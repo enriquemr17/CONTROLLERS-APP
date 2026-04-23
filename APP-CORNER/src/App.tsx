@@ -1,15 +1,13 @@
-import { useState } from 'react'
-import FilterBar from './components/FilterBar'
-import { type Estado } from './components/StatusBadge'
+
+import NavBar from "./components/NavBar";
 
 function App() {
-  const [filtro, setFiltro] = useState<Estado | null>(null)
-
   return (
-    <div className="p-8">
-      <FilterBar value={filtro} onChange={setFiltro} />
-      <p>Filtro activo: {filtro ?? 'Todos'}</p>
-    </div>
+   <div className="flex">
+    <NavBar/>
+    <main> Algo de contenido</main>
+
+   </div>
   )
 }
 
