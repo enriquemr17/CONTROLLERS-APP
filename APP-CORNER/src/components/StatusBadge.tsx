@@ -1,4 +1,4 @@
-type Estado = 'pendiente' | 'jugando' | 'completado' | 'abandonado' | 'whislist'
+export type Estado = 'pendiente' | 'jugando' | 'completado' | 'abandonado' | 'whislist'
 
 interface StatusBadgeProps {
     estado: Estado; 
@@ -48,7 +48,8 @@ const colores: Record<Estado, string> = {
                 {estado}
             </span>
         )
-    }
+}
+
 
 export default StatusBadge
     
