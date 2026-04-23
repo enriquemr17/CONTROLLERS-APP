@@ -1,15 +1,13 @@
-
-
-import StatusBadge from './components/StatusBadge'
+import { useState } from 'react'
+import SearchBar from './components/SearchBar'
 
 function App() {
+  const [busqueda, setBusqueda] = useState('')
+
   return (
-    <div className="p-8 flex gap-4">
-      <StatusBadge estado="jugando" />
-      <StatusBadge estado="completado" />
-      <StatusBadge estado="pendiente" />
-      <StatusBadge estado="abandonado" />
-      <StatusBadge estado="whislist" />
+    <div className="p-8">
+      <SearchBar value={busqueda} onChange={setBusqueda} />
+      <p>Buscando: {busqueda}</p>
     </div>
   )
 }
