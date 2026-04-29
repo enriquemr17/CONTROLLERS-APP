@@ -11,6 +11,7 @@ React, TypeScript y Tailwind CSS
     Va a ser utilizado en la página de colección propia y en la página principal o Home, para así poder filtrar los juegos de la manera que el cliente quiera, tanto para la cantidad de horas jugadas, por ejemplo, o en el caso de hacerlo en la pantalla Home, para que el cliente vea que juegos le pueden interesar.
 
     Los props utilizados son: 
+        
         Value: controla el estado del          videojuego, puediendo ser null, haciendo que salgan todos los estados.
 
         onChange: permite cambiar de valor entre unos y otros.   
