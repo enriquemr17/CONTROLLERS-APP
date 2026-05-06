@@ -8,4 +8,4 @@ Cuándo usarlo:
     La utilizamos para que el backend y la API sepan los login y logout de la app. 
 
 ## CollectionContext
-    Sirve para llevar el control de la colección usando la API para actualizar los estados de los juegos, añadir y eliminar los mismos, usando tambieén el backend. 
+    Sirve para llevar el control de la colección usando la API para actualizar los estados de los juegos, añadir y eliminar los mismos, usando también el backend. 
