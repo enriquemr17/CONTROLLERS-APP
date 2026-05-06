@@ -1,4 +1,4 @@
-import StatusBadge, {type Estado} from "./StatusBadge";
+import { type Estado } from "./StatusBadge"
 
 interface FilterBarProps {
     value: Estado | null    // puede tener estado o ser null y mostrar todos los estados
