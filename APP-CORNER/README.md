@@ -2,6 +2,10 @@
 
 Aplicación web desarrollada con React, TypeScript y Vite.
 
+## Despliegue 
+Frontend: [Ver app](https://controllers-app-git-main-enriquemr17s-projects.vercel.app)
+
+
 ## Tecnologías
 
 - React + TypeScript
