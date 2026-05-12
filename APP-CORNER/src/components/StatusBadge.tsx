@@ -5,32 +5,7 @@ interface StatusBadgeProps {
     
 }
 
-function comprobarEstado (estado: Estado): string {
-    switch(estado) {
-        case "pendiente": 
-            return "Juego en estado pendiente. ¡Cada vez queda menos para empezarlo!"
-        
-        case "jugando": 
-            return "Lo estás jugando. ¡A tope!"
-        
-        case "abandonado": 
-            return "Juego abandonado, que pena"
-        
-        case "completado": 
-            return "¡Enhorabuena, has completado este videojuego, ve a por más!"
-        
-        case "whislist": 
-            return "Juego añadido a lista de deseos"
-        
-        default: 
-            const comprobacionExhaustiva: never = estado; 
-            throw new Error(`Estado no manejado: ${comprobacionExhaustiva}`)
 
-
-    }
-
-
-}
 
 function StatusBadge({estado}: StatusBadgeProps) {
      

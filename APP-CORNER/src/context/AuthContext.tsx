@@ -12,7 +12,7 @@ const AuthContext = createContext<AuthContextProps | null>(null)
 
 export function AuthProvider ({children}: {children: React.ReactNode}) {
     const [usuario, setUsuario] = useState <string | null> (null)
-    const [cargando, setCargando] = useState <boolean> (true)
+    const [cargando, _setCargando] = useState <boolean> (true)
 
     const login = () => setUsuario ("usuario@email.com")
     const logout = () => setUsuario(null)

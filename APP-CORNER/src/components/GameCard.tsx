@@ -3,7 +3,7 @@ import StatusBadge, {type Estado} from "./StatusBadge";
 
 
 interface GameCardProps {
-    readonly id: string; 
+    readonly id?: string; 
     titulo: string; 
     plataforma: string; 
     estado: Estado; 
@@ -11,7 +11,7 @@ interface GameCardProps {
     horasJugadas: number; 
 }
 
-function GameCard ({id, titulo, plataforma, estado, portada, horasJugadas}: GameCardProps) {
+function GameCard ({ titulo, plataforma, estado, portada, horasJugadas}: GameCardProps) {
     
    return (
   <div className="bg-white rounded-xl shadow-md p-4 w-64">
