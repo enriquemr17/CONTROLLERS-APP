@@ -1,133 +1,83 @@
-
-import React, { useState } from "react"
-import { useCollection } from "../context/CollectionContext";
-import type { CreateGameInput } from "../types/game";
-
-
+import { useState } from "react";
+import { addGame } from "../api/gamesApi";
 
 export default function GameForm() {
-    
-    const [formData, setFormData] = useState<CreateGameInput> ({
-
+  const [formData, setFormData] = useState({
     title: "",
-    platform: "", 
-    status: "pending"
+    platform: "",
+    status: "pending",
+  });
 
-}); 
+  const [message, setMessage] = useState("");
 
-const [message, setMessage] = useState(""); 
-const {añadir} = useCollection()!; 
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
+    const { name, value } = e.target;
 
-function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
-  const {name, value} = e.target; 
     setFormData((prev) => ({
-    ...prev,
-    [e.target.name]: e.target.value
-  })); 
+      ...prev,
+      [name]: value,
+    }));
+  }
 
-}
-  return (
-    <div>
-        <input
-            name="title" // campo a modificar
-            value={formData.title} // de donde recoge el dato
-            onChange={handleChange} // como actualiza el estado 
-        />
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
 
-        <input 
-            name="platform"
-            value={formData.platform}
-            onChange={handleChange}
-        />
-
-        <input 
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-        />
-
-    </div>
-    
-  );
-
-function handleSubmit (e: any) {
-    e.preventDefault(); 
-
-    if (formData.title === "" || formData.platform === "") {
-        setMessage ("Rellena todos los campos");
-        return; 
+    // VALIDACION DE FORMULARIO
+    if (!formData.title || !formData.platform) {
+      setMessage("Rellena todos los campos");
+      return;
     }
-    setMessage ("Juego añadido correctamente");
-    añadir(formData); 
-    
 
-    setFormData ({
+    try {
+      await addGame(formData);
+      window.location.href = "/collection"; 
+
+      setMessage("Juego añadido correctamente");
+
+      // RESET DE FORMULARIO
+      setFormData({
         title: "",
         platform: "",
-        status: "pending"
-    });
-}
+        status: "pending",
+      });
+    } catch (error) {
+      setMessage("Error al añadir el juego");
+    }
+  }
 
-return (
-
+  return (
     <form onSubmit={handleSubmit}>
-
-      
-
       <input
-
         name="title"
-
         value={formData.title}
-
         onChange={handleChange}
-
         placeholder="Título"
-
       />
 
       <input
-
         name="platform"
-
         value={formData.platform}
-
         onChange={handleChange}
-
         placeholder="Plataforma"
-
       />
 
       <select
-
         name="status"
-
         value={formData.status}
-
         onChange={handleChange}
-
       >
-
-        <option value="pending">Pending</option>
-
-        <option value="playing">Playing</option>
-
-        <option value="completed">Completed</option>
-
-        <option value="abandoned">Abandoned</option>
-
-        <option value="wishlist">Wishlist</option>
-
+        <option value="pending">Pendiente</option>
+        <option value="playing">Jugando</option>
+        <option value="completed">Completado</option>
       </select>
 
       <button type="submit">Añadir</button>
 
       {message && <p>{message}</p>}
-
     </form>
-
   );
-
 }
 
 

@@ -6,9 +6,8 @@ function NavBar () {
     
     return (
         <nav className="flex-gap-2 flex-wrap">
-            <Link className = {linkClases} to = "/home">Home</Link>
+            <Link className = {linkClases} to = "/">Home</Link>
             <Link className = {linkClases} to = "/collection">Collection</Link>
-            <Link className = {linkClases} to = "/gameDetail">Game Detail</Link>
             <Link className = {linkClases} to = "/profile">Profile</Link>
         </nav>
     )

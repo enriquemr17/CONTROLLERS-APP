@@ -5,11 +5,11 @@ import SearchBar from "./components/SearchBar";
 import { useState } from "react";
 import { type Estado } from "./components/StatusBadge";
 import {Routes, Route} from 'react-router-dom'
-import HomePage from "./pages/CollectionPage";
+import HomePage from "./pages/HomePage";
 import CollectionPage from "./pages/CollectionPage"
-import ProfilePage from "./pages/CollectionPage"
-import GameDetailPage from "./pages/CollectionPage"
-import NotFoundPage from "./pages/CollectionPage"
+import ProfilePage from "./pages/ProfilePage"
+import GameDetailPage from "./pages/GameDetailPage"
+import NotFoundPage from "./pages/NotFoundPage"
 
 
 
@@ -25,9 +25,9 @@ return (
     <main>
       <Routes>
         <Route path="/" element = {<HomePage/>} />
-        <Route path="/Coleccion" element = {<CollectionPage/>} />
-        <Route path="/perfil" element = {<ProfilePage/>} /> 
-        <Route path="/detalleJuego" element = {<GameDetailPage/>} />
+        <Route path="/collection" element = {<CollectionPage/>} />
+        <Route path="/profile" element = {<ProfilePage/>} /> 
+        <Route path="/game/:id" element = {<GameDetailPage/>} />
         <Route path="*" element = {<NotFoundPage/>} />
       </Routes>
     </main>

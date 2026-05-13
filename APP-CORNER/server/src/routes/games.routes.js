@@ -1,9 +1,26 @@
-import { Router } from "express";
+import express from "express";
+import {
+  getGames,
+  getGameById,
+  createGame,
+  updateGame,
+  deleteGame
+} from "../controllers/games.controller.js";
+import * as controller from "../controllers/games.controller.js";
 
-const router = Router();
+const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.json({ message: "GET games OK" });
-});
+// GET
+router.get("/", getGames);
+router.get("/:id", getGameById);
+
+// POST
+router.post("/", createGame);
+
+// PUT
+router.put("/:id", updateGame);
+
+// DELETE
+router.delete("/:id", deleteGame);
 
 export default router;
