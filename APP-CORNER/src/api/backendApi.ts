@@ -1,4 +1,4 @@
-import type { CreateGameInput } from "../types/game";
+import type { Game, CreateGameInput } from "../types/game";
 
 
 export async function addGame(game: CreateGameInput) {
@@ -17,3 +17,38 @@ export async function addGame(game: CreateGameInput) {
   return response.json();
 }
 
+export async function getBackendGames () {
+  const res = await fetch ("http://localhost:3001/api/games")
+  if (!res.ok) {
+    throw new Error ("Error al obtener los juegos")
+  }
+  
+  return res.json(); 
+
+  
+}
+
+export async function updateGame (id: string, data: Partial<Game>) {
+  const res = await fetch (`http://localhost:3001/api/games/${id}`, {
+    method: "PUT", 
+    headers : {
+      "Content-Type": "application/json"
+    }, 
+    body: JSON.stringify(data),
+  }); 
+  if (!res.ok) {
+    throw new Error ("Error al actualizar los juegos")
+  }
+
+  return res.json(); 
+}
+
+export async function deleteGame (id: string) {
+  const res = await fetch (`http://localhost:3001/api/games/${id}`, {
+    method: "DELETE",
+  }); 
+if (!res.ok) {
+  throw new Error ("Error al eliminar el juego")
+}
+return res.json(); 
+}

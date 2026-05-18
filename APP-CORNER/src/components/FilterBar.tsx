@@ -6,7 +6,7 @@ interface FilterBarProps {
 }
 
 function FilterBar ({value, onChange}: FilterBarProps) {
-    const estados: Estado [] = [`pendiente`, `jugando`, `completado`, `abandonado`, `whislist`]
+    const estados: Estado [] = [`pending`, `playing`, `completed`, `abandoned`, `whishlist`]
     
     return (
         <div className= "flex-gap-2 flex-wrap">
