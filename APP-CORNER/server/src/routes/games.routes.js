@@ -6,7 +6,6 @@ import {
   updateGame,
   deleteGame
 } from "../controllers/games.controller.js";
-import * as controller from "../controllers/games.controller.js";
 
 const router = express.Router();
 

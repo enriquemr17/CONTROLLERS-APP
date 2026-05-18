@@ -1,50 +1,32 @@
-import { useState } from "react";
-import { addGame } from "../api/gamesApi";
+import React, { useState } from "react"
+import { useCollection } from "../context/CollectionContext"
+import type { CreateGameInput } from "../types/game"
 
 export default function GameForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<CreateGameInput>({
     title: "",
     platform: "",
-    status: "pending",
-  });
+    status: "pending"
+  })
+  const [message, setMessage] = useState("")
+  const { añadir } = useCollection()!
 
-  const [message, setMessage] = useState("");
-
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) {
-    const { name, value } = e.target;
-
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
-    }));
+      [e.target.name]: e.target.value
+    }))
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-
-    // VALIDACION DE FORMULARIO
-    if (!formData.title || !formData.platform) {
-      setMessage("Rellena todos los campos");
-      return;
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    if (formData.title === "" || formData.platform === "") {
+      setMessage("Rellena todos los campos")
+      return
     }
-
-    try {
-      await addGame(formData);
-      window.location.href = "/collection"; 
-
-      setMessage("Juego añadido correctamente");
-
-      // RESET DE FORMULARIO
-      setFormData({
-        title: "",
-        platform: "",
-        status: "pending",
-      });
-    } catch (error) {
-      setMessage("Error al añadir el juego");
-    }
+    añadir(formData)
+    setMessage("Juego añadido correctamente")
+    setFormData({ title: "", platform: "", status: "pending" })
   }
 
   return (
@@ -55,14 +37,12 @@ export default function GameForm() {
         onChange={handleChange}
         placeholder="Título"
       />
-
       <input
         name="platform"
         value={formData.platform}
         onChange={handleChange}
         placeholder="Plataforma"
       />
-
       <select
         name="status"
         value={formData.status}
@@ -71,15 +51,14 @@ export default function GameForm() {
         <option value="pending">Pendiente</option>
         <option value="playing">Jugando</option>
         <option value="completed">Completado</option>
+        <option value="abandoned">Abandonado</option>
+        <option value="wishlist">Wishlist</option>
       </select>
-
-      <button type="submit">Añadir</button>
-
+      <button type="submit">Añadir juego</button>
       {message && <p>{message}</p>}
     </form>
-  );
+  )
 }
-
 
 // Esta tsx es para crear los juegos y poder concectarlos a los inputs (GPT)
 // Return de todo lo que queremos que se vea en pantalla (esto no es UI, es solo informacion)
