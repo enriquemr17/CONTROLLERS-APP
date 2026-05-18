@@ -1,3 +1,5 @@
+import type { CreateGameInput, Game } from "../types/game";
+
 export async function searchGames(query: string) {
   const res = await fetch(
     `https://api.rawg.io/api/games?search=${query}&key=a66dd6a48a4547158ab02855f1b6bba6`
@@ -11,7 +13,7 @@ export async function getBackendGames() {
   return res.json();
 }
 
-export async function addGame(game: any) {
+export async function addGame(game: CreateGameInput) {
   const res = await fetch("http://localhost:3001/api/games", {
     method: "POST",
     headers: {
@@ -23,7 +25,7 @@ export async function addGame(game: any) {
   return res.json();
 }
 
-export async function updateGame(id: string, data: any) {
+export async function updateGame(id: string, data: Partial<Game>) {
   const res = await fetch(`http://localhost:3001/api/games/${id}`, {
     method: "PUT",
     headers: {

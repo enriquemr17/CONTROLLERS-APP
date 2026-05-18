@@ -1,4 +1,7 @@
-export async function addGame(game: any) {
+import type { CreateGameInput } from "../types/game";
+
+
+export async function addGame(game: CreateGameInput) {
   const response = await fetch("http://localhost:3001/api/games", {
     method: "POST",
     headers: {
@@ -13,3 +16,4 @@ export async function addGame(game: any) {
 
   return response.json();
 }
+
