@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import GameCard from "../components/GameCard";
 import { getBackendGames, deleteGame, updateGame } from "../api/gamesApi";
-import { Game, GameStatus } from "../types/game";
+import type { Game, GameStatus } from "../types/game";
 function CollectionPage() {
   const [games, setGames] = useState<any[]>([]);
   const [cargando, setCargando] = useState (true); 
@@ -43,8 +43,8 @@ function CollectionPage() {
       if (!newStatus || !newHours) return;
     
     await updateGame(id, {
-      status: newStatus,
-      horasJugadas: Number(newHours),
+      status: newStatus as GameStatus,
+      hoursPlayed: Number(newHours),
     });
       loadGames ()
     } catch (err) {
