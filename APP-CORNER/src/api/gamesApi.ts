@@ -9,12 +9,12 @@ export async function searchGames(query: string) {
 }
 
 export async function getBackendGames() {
-  const res = await fetch("http://localhost:3001/api/games");
+  const res = await fetch("https://controllers-app.onrender.com/api/games");
   return res.json();
 }
 
 export async function addGame(game: CreateGameInput) {
-  const res = await fetch("http://localhost:3001/api/games", {
+  const res = await fetch("https://controllers-app.onrender.com/api/games", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export async function addGame(game: CreateGameInput) {
 }
 
 export async function updateGame(id: string, data: Partial<Game>) {
-  const res = await fetch(`http://localhost:3001/api/games/${id}`, {
+  const res = await fetch(`https://controllers-app.onrender.com/api/games/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export async function updateGame(id: string, data: Partial<Game>) {
 }
 
 export async function deleteGame(id: string) {
-  const res = await fetch(`http://localhost:3001/api/games/${id}`, {
+  const res = await fetch(`https://controllers-app.onrender.com/api/games/${id}`, {
     method: "DELETE",
   });
 

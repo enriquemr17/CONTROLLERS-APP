@@ -2,7 +2,7 @@ import type { Game, CreateGameInput } from "../types/game";
 
 
 export async function addGame(game: CreateGameInput) {
-  const response = await fetch("http://localhost:3001/api/games", {
+  const response = await fetch("https://controllers-app.onrender.com/api/games", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -18,7 +18,7 @@ export async function addGame(game: CreateGameInput) {
 }
 
 export async function getBackendGames () {
-  const res = await fetch ("http://localhost:3001/api/games")
+  const res = await fetch ("https://controllers-app.onrender.com/api/games")
   if (!res.ok) {
     throw new Error ("Error al obtener los juegos")
   }
@@ -29,7 +29,7 @@ export async function getBackendGames () {
 }
 
 export async function updateGame (id: string, data: Partial<Game>) {
-  const res = await fetch (`http://localhost:3001/api/games/${id}`, {
+  const res = await fetch (`https://controllers-app.onrender.com/api/games/${id}`, {
     method: "PUT", 
     headers : {
       "Content-Type": "application/json"
@@ -44,7 +44,7 @@ export async function updateGame (id: string, data: Partial<Game>) {
 }
 
 export async function deleteGame (id: string) {
-  const res = await fetch (`http://localhost:3001/api/games/${id}`, {
+  const res = await fetch (`https://controllers-app.onrender.com/api/games/${id}`, {
     method: "DELETE",
   }); 
 if (!res.ok) {
