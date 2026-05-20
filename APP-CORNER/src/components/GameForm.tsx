@@ -6,7 +6,8 @@ export default function GameForm() {
   const [formData, setFormData] = useState<CreateGameInput>({
     title: "",
     platform: "",
-    status: "pending"
+    status: "pending",
+    hoursPlayed: 0
   })
   const [message, setMessage] = useState("")
   const { añadir } = useCollection()!
@@ -48,12 +49,22 @@ export default function GameForm() {
         value={formData.status}
         onChange={handleChange}
       >
+
         <option value="pending">Pendiente</option>
         <option value="playing">Jugando</option>
         <option value="completed">Completado</option>
         <option value="abandoned">Abandonado</option>
         <option value="wishlist">Wishlist</option>
       </select>
+
+      <input 
+      type="number"
+      name="hoursPlayed"
+      value = {formData.hoursPlayed}
+      onChange={handleChange}
+      placeholder="Horas jugadas"
+      />
+      
       <button type="submit">Añadir juego</button>
       {message && <p>{message}</p>}
     </form>

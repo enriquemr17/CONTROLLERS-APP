@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import GameCard from "../components/GameCard";
 import { getBackendGames, deleteGame, updateGame } from "../api/gamesApi";
 import type { Game, GameStatus } from "../types/game";
+import FilterBar from "../components/FilterBar"; 
+import EditGameModal from "../components/EditGameModal";
+import { id } from "date-fns/locale";
+
 function CollectionPage() {
   const [games, setGames] = useState<any[]>([]);
   const [cargando, setCargando] = useState (true); 
   const [error, setError] = useState<String | null> (null)
+  const [filtro, setFiltro] = useState <GameStatus | null> (null)
+  const [juegoEditando, setJuegoEditando] = useState <Game | null> (null)
   
   async function loadGames() {
     try {
@@ -36,17 +42,15 @@ function CollectionPage() {
   }
 
   async function handleEdit(id: string) {
-    try {
-       const newStatus = prompt("Nuevo estado (playing/completed/pending)");
-      const newHours = prompt("Horas jugadas");
+    const game = games.find (g => g.id === id)
+    setJuegoEditando (game || null) 
+  }
 
-      if (!newStatus || !newHours) return;
-    
-    await updateGame(id, {
-      status: newStatus as GameStatus,
-      hoursPlayed: Number(newHours),
-    });
+  async function handleSave (id: string, status: GameStatus, hoursPlayed: number) {
+    try {
+      await updateGame (id, { status, hoursPlayed})
       loadGames ()
+      setJuegoEditando (null)
     } catch (err) {
       setError ("Error al editar el juego")
     }
@@ -54,8 +58,12 @@ function CollectionPage() {
   
   if (cargando) return <p>Cargando...</p>
   if (error) return <p>{error}</p>
+  
 
   return (
+    <div>
+      <FilterBar value = {filtro} onChange = {setFiltro} />
+    
     <div className="flex flex-wrap gap-4">
       {games.map((game) => (
         <GameCard
@@ -65,11 +73,19 @@ function CollectionPage() {
           platform={game.platform}
           status={game.status as GameStatus}
           portada={game.portada}
-          horasJugadas={game.horasJugadas}
+          hoursPlayed={game.hoursPlayed}
           onDelete={handleDelete}
           onEdit={handleEdit}
         />
       ))}
+
+      <EditGameModal
+        isOpen = {juegoEditando !== null}
+        game = {juegoEditando}
+        onSave = {handleSave}
+        onClose = {() => setJuegoEditando(null)}
+      />
+    </div>
     </div>
   );
 }

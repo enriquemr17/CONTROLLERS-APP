@@ -9,12 +9,12 @@ interface GameCardProps {
     platform: string; 
     status: Estado; 
     portada?: string; // En TypeScript las URLS de imágenes se manejan como strings 
-    horasJugadas?: number; 
+    hoursPlayed?: number; 
     onDelete: (id:string) => void;
     onEdit: (id: string) => void;
 }
 
-function GameCard ({ id, title, platform, status, portada, horasJugadas, onDelete, onEdit}: GameCardProps) {
+function GameCard ({ id, title, platform, status, portada, hoursPlayed, onDelete, onEdit}: GameCardProps) {
     
 return (
   <div className="bg-white rounded-xl shadow hover:shadow-lg transition p-4">
@@ -27,7 +27,7 @@ return (
 
     <h3 className="font-bold text-lg">{title}</h3>
     <p className="text-gray-500 text-sm">{platform}</p>
-    <p className="text-gray-500 text-sm">{horasJugadas} horas</p>
+    <p className="text-gray-500 text-sm">{hoursPlayed} horas</p>
     <StatusBadge estado={status} />
     
     <div className="flex gap-2 mt-3">

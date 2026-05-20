@@ -23,3 +23,23 @@ UpdateGame ->
 DeleteGame -> 
     1. Elimina los juegos de la lista de colección.
     2. Recibe una llamada del backend con el método DELETE y devuleve un mensaje con el juego eliminado. 
+
+### TIPOS UTILIZADOS 
+    Para poder tipar todas las funciones hemos utilizado difrentes tipos, como Game, GameStatus y CreateGameInput. 
+
+    1. Game: sirve para conocer todos los datos de cada juego y los que queremos utilizar en cada momento. 
+
+    2. GameStatus: sirve para conocer cual es el estado del videojuego, como (jugando, abandonado, lista de deseos, pendiente...)
+
+    3. CreateGameInput: sirve para controlar la entrada la entrada de los videojuegos al buscar en la pantalla principal. 
+
+### GESTIÓN DE ESTADOS DE RED
+En CollectionPage gestionamos tres estados posibles cuando llamamos al backend:
+- **Cargando**: mientras esperamos la respuesta del servidor mostramos un mensaje "Cargando..."
+- **Error**: si la petición falla mostramos el mensaje de error correspondiente
+- **Éxito**: cuando los datos llegan correctamente los mostramos en pantalla
+
+### FUENTE DE VERDAD
+Los datos de la colección de juegos viven en el backend (Express), no en LocalStorage. 
+Cada vez que el usuario añade, edita o elimina un juego, se hace una petición al servidor 
+y se refresca la lista desde la API, asegurando que los datos siempre están actualizados.

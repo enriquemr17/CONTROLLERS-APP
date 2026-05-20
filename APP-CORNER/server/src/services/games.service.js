@@ -15,7 +15,7 @@ export const createGame = (data) => {
     platform: data.platform,
     status: data.status || "pending",
     portada: data.portada || "",
-    horasJugadas: data.horasJugadas || 0
+    hoursPlayed: data.hoursPlayed || 0
   };
 
   games.push(newGame);

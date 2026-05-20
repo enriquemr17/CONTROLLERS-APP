@@ -29,10 +29,10 @@ function HomePage() {
     try {
       await addGame({
         title: game.name,
-        platform: "Unknown",
+        platform: game.platforms?.[0]?. platform?.name || "Unknow", 
         status: "pending",
         portada: game.background_image,
-        horasJugadas: 0
+        hoursPlayed: 0
       });
 
       alert("Juego añadido correctamente");
