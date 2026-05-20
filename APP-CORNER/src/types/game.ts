@@ -7,6 +7,13 @@ export interface Game {
 // OPCIONALES
     platform?: string
     hoursPlayed?: number
+    portada?: string
 }
 
-export type CreateGameInput = Omit<Game, "id"> // Añadir juego sin ID para usuario
+export type CreateGameInput = {
+  title: string
+  status: GameStatus
+  platform?: string
+  hoursPlayed?: number
+  portada?: string
+}
