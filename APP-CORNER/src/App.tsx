@@ -20,15 +20,15 @@ function App() {
 
 
 return (
-  <div className="flex">
+  <div className="min-h-screen bg-gray-50">
     <NavBar/>
     <main>
       <Routes>
-        <Route path="/" element = {<HomePage/>} />
-        <Route path="/collection" element = {<CollectionPage/>} />
-        <Route path="/profile" element = {<ProfilePage/>} /> 
-        <Route path="/game/:id" element = {<GameDetailPage/>} />
-        <Route path="*" element = {<NotFoundPage/>} />
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/coleccion" element={<CollectionPage/>} />
+        <Route path="/perfil" element={<ProfilePage/>} />
+        <Route path="/juego/:id" element={<GameDetailPage/>} />
+        <Route path="*" element={<NotFoundPage/>} />
       </Routes>
     </main>
   </div>
