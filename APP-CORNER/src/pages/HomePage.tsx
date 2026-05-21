@@ -1,27 +1,21 @@
-import { useState } from "react";
-import { searchGames, addGame } from "../api/gamesApi";
+import { useState } from "react"
+import { searchGames, addGame } from "../api/gamesApi"
 
 function HomePage() {
-  const [query, setQuery] = useState("");
-  const [games, setGames] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [query, setQuery] = useState("")
+  const [games, setGames] = useState<any[]>([])
+  const [loading, setLoading] = useState(false)
 
   async function handleSearch() {
-    console.log("BOTON BUSCAR FUNCIONA"); 
-    
-    if (!query.trim()) return;
-
+    if (!query.trim()) return
     try {
-      setLoading(true);
-
-      const data = await searchGames(query);
-      setGames(data.results);
-    
-
+      setLoading(true)
+      const data = await searchGames(query)
+      setGames(data.results)
     } catch (error) {
-      console.error("Error buscando juegos", error);
+      console.error("Error buscando juegos", error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   }
 
@@ -29,67 +23,80 @@ function HomePage() {
     try {
       await addGame({
         title: game.name,
-        platform: game.platforms?.[0]?. platform?.name || "Unknow", 
+        platform: game.platforms?.[0]?.platform?.name || "Unknown",
         status: "pending",
         portada: game.background_image,
         hoursPlayed: 0
-      });
-
-      alert("Juego añadido correctamente");
+      })
+      alert("¡Juego añadido a tu colección!")
     } catch (error) {
-      console.error("Error añadiendo juego", error);
+      console.error("Error añadiendo juego", error)
     }
   }
 
-return (
-  <div className="p-6">
+  return (
+    <div className="max-w-6xl mx-auto px-8 py-8">
+      <p className="text-xs font-medium text-purple-600 tracking-widest uppercase mb-1">// Explorar</p>
+      <h1 className="text-2xl font-semibold text-gray-900 mb-6">Encuentra tu próximo juego</h1>
 
-    <h1 className="text-2xl font-bold mb-4">
-      Buscar juegos
-    </h1>
+      <div className="flex gap-3 mb-8">
+        <input
+          className="flex-1 bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-purple-400"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+          placeholder="Buscar juego..."
+        />
+        <button
+          className="bg-purple-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors"
+          onClick={handleSearch}
+        >
+          {loading ? "Buscando..." : "Buscar"}
+        </button>
+      </div>
 
-    <div className="flex gap-2 mb-6">
-      <input
-        className="border p-2 rounded w-full"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Buscar juego..."
-      />
-
-      <button
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-        onClick={handleSearch}
-      >
-        Buscar
-      </button>
-    </div>
-
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {games.map((game: any) => (
-        <div key={game.id} className="border rounded-lg p-2">
-
-          <img
-            src={game.background_image}
-            className="w-full h-40 object-cover rounded"
-          />
-
-          <h3 className="font-semibold mt-2">
-            {game.name}
-          </h3>
-
-          <button
-            className="mt-2 bg-green-500 text-white px-3 py-1 rounded"
-            onClick={() => handleAddGame(game)}
-          >
-            Añadir
-          </button>
-
+      {games.length > 0 && (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {games.map((game: any) => (
+            <div key={game.id} className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+              <div className="relative">
+                <img
+                  src={game.background_image}
+                  alt={game.name}
+                  className="w-full h-36 object-cover"
+                />
+                <div className="absolute top-2 left-2 bg-black bg-opacity-60 text-white text-xs px-2 py-0.5 rounded font-medium">
+                  {game.platforms?.[0]?.platform?.name || "Unknown"}
+                </div>
+                {game.rating > 0 && (
+                  <div className="absolute top-2 right-2 bg-black bg-opacity-60 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
+                    ★ {game.rating.toFixed(1)}
+                  </div>
+                )}
+              </div>
+              <div className="p-3">
+                <h3 className="font-semibold text-sm text-gray-900 mb-1 truncate">{game.name}</h3>
+                <p className="text-xs text-gray-400 mb-3">{game.genres?.[0]?.name || ""}</p>
+                <button
+                  className="w-full text-xs py-1.5 rounded-lg bg-purple-50 text-purple-600 border border-purple-200 hover:bg-purple-100 transition-colors font-medium"
+                  onClick={() => handleAddGame(game)}
+                >
+                  + Añadir a colección
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      )}
 
-  </div>
-);
+      {games.length === 0 && !loading && (
+        <div className="text-center py-20 text-gray-400">
+          <p className="text-4xl mb-4">🎮</p>
+          <p className="text-sm">Busca un juego para empezar</p>
+        </div>
+      )}
+    </div>
+  )
 }
 
-export default HomePage;
+export default HomePage
