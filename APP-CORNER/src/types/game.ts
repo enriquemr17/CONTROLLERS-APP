@@ -1,4 +1,4 @@
-export type GameStatus = "pending" | "playing" | "completed" | "abandoned" | "whishlist"
+export type GameStatus = "pending" | "playing" | "completed" | "abandoned" | "wishlist"
 
 export interface Game {
     id: string
