@@ -1,4 +1,5 @@
-export type Estado = 'pending' | 'playing' | 'completed' | 'abandoned' | 'wishlist'
+import type { GameStatus } from "../types/game"
+export type Estado = GameStatus
 
 interface StatusBadgeProps {
   estado: Estado
