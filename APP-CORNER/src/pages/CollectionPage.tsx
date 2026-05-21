@@ -54,28 +54,28 @@ function CollectionPage() {
 
   if (cargando) return (
     <div className="flex items-center justify-center min-h-screen">
-      <p className="text-purple-600 text-sm">Cargando colección...</p>
+      <p className="text-purple-400 text-sm">Cargando colección...</p>
     </div>
   )
 
   if (error) return (
     <div className="flex items-center justify-center min-h-screen">
-      <p className="text-red-500 text-sm">{error}</p>
+      <p className="text-red-400 text-sm">{error}</p>
     </div>
   )
 
   return (
     <div className="max-w-6xl mx-auto px-8 py-8">
-      <p className="text-xs font-medium text-purple-600 tracking-widest uppercase mb-1">// Mi colección</p>
-      <h1 className="text-2xl font-semibold text-gray-900 mb-2">Tu biblioteca</h1>
-      <p className="text-sm text-gray-400 mb-6">{games.length} juegos en tu colección</p>
+      <p className="text-xs font-medium text-purple-400 tracking-widest uppercase mb-1">// Mi colección</p>
+      <h1 className="text-2xl font-semibold text-white mb-2">Tu biblioteca</h1>
+      <p className="text-sm text-gray-500 mb-6">{games.length} juegos en tu colección</p>
 
       <div className="mb-6">
         <FilterBar value={filtro} onChange={setFiltro} />
       </div>
 
       {juegosFiltrados.length === 0 ? (
-        <div className="text-center py-20 text-gray-400">
+        <div className="text-center py-20 text-gray-600">
           <p className="text-4xl mb-4">🎮</p>
           <p className="text-sm">No hay juegos en esta categoría</p>
         </div>

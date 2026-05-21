@@ -1,31 +1,39 @@
 import { type Estado } from "./StatusBadge"
 
 interface FilterBarProps {
-    value: Estado | null    // puede tener estado o ser null y mostrar todos los estados
-    onChange: (valor: Estado | null) => void
+  value: Estado | null
+  onChange: (valor: Estado | null) => void
 }
 
-function FilterBar ({value, onChange}: FilterBarProps) {
-    const estados: Estado [] = [`pending`, `playing`, `completed`, `abandoned`, `whishlist`]
-    
-    return (
-        <div className= "flex-gap-2 flex-wrap">
-            <button
-                onClick={() => onChange(null)}
-                className={value === null ? "bg-blue-500 text-white px-4 py-2 rounded-full" : "bg-gray-100 px-4 py-2 rounded-full"}
-                >Todos</button>
-            {estados.map((estado) => (
-                <button key={estado}
-                        onClick={() => onChange(estado)} // clickea, cambia el estado
-                        className={value === estado ? "bg-blue-500 text-white px-4 py-2 rounded-full" : "bg-gray-100 px-4 py-2 rounded-full"}
-                        >
-                    {estado}
-                </button>
-            ))}
-        </div>
-    )
-}
+function FilterBar({ value, onChange }: FilterBarProps) {
+  const estados: Estado[] = ['pending', 'playing', 'completed', 'abandoned', 'wishlist']
 
+  return (
+    <div className="flex gap-2 flex-wrap">
+      <button
+        onClick={() => onChange(null)}
+        className={value === null
+          ? "px-4 py-1.5 rounded-full text-sm font-medium bg-purple-600 text-white"
+          : "px-4 py-1.5 rounded-full text-sm border border-gray-700 text-gray-400 hover:border-purple-600 hover:text-purple-400 transition-colors"
+        }
+      >
+        Todos
+      </button>
+      {estados.map((estado) => (
+        <button
+          key={estado}
+          onClick={() => onChange(estado)}
+          className={value === estado
+            ? "px-4 py-1.5 rounded-full text-sm font-medium bg-purple-600 text-white"
+            : "px-4 py-1.5 rounded-full text-sm border border-gray-700 text-gray-400 hover:border-purple-600 hover:text-purple-400 transition-colors"
+          }
+        >
+          {estado}
+        </button>
+      ))}
+    </div>
+  )
+}
 
 export default FilterBar
 

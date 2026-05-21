@@ -1,30 +1,24 @@
-export type Estado = 'pending' | 'playing' | 'completed' | 'abandoned' | 'whishlist'
+export type Estado = 'pending' | 'playing' | 'completed' | 'abandoned' | 'wishlist'
 
 interface StatusBadgeProps {
-    estado: Estado; 
-    
+  estado: Estado
 }
 
+function StatusBadge({ estado }: StatusBadgeProps) {
+  const colores: Record<Estado, string> = {
+    pending: "bg-yellow-900 text-yellow-300 px-3 py-1 rounded-full text-xs font-medium border border-yellow-700",
+    playing: "bg-blue-900 text-blue-300 px-3 py-1 rounded-full text-xs font-medium border border-blue-700",
+    completed: "bg-green-900 text-green-300 px-3 py-1 rounded-full text-xs font-medium border border-green-700",
+    abandoned: "bg-red-900 text-red-300 px-3 py-1 rounded-full text-xs font-medium border border-red-700",
+    wishlist: "bg-purple-900 text-purple-300 px-3 py-1 rounded-full text-xs font-medium border border-purple-700"
+  }
 
-
-function StatusBadge({estado}: StatusBadgeProps) {
-     
-const colores: Record<Estado, string> = {
-  pending: "bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium",
-  playing: "bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium",
-  completed: "bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium",
-  abandoned: "bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium",
-  whishlist: "bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium"
-
+  return (
+    <span className={colores[estado]}>
+      {estado}
+    </span>
+  )
 }
-    
-    return (
-            <span className={colores[estado]}>
-                {estado}
-            </span>
-        )
-}
-
 
 export default StatusBadge
     
