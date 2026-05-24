@@ -89,3 +89,13 @@ Está pensada para uso personal, no empresarial.
 - JavaScript
 - LocalStorage para almacenamiento local
 - Consumo de una API externa de videojuegos
+
+
+
+### A TERMINAR
+
+Para la práctica de Corner Studio, la aplicación queda terminada, pero para dejar la aplicación completa, se deberia de añadir mayor feedback en la página de perfil, mayor control sobre los juegos, como por ejemplo la opción a poder editar la plataforma en la que se han añadido los juegos, cambiar algo el estilo, y añadir animaciones o más aportaciones a la misma, como el poder ver que juegos se han añadido recientemente, los juegos con mejores valoraciones, cuales son los que más gente añade o juega, los mas exitosos por plataforma...
+
+Además de eso, se deberia de actualizar la base de datos, utilizando Firebase para el acceso de los usuarios. 
+
+Esta base de datos se va a utilizar para poder registrar usuarios y que cada usuario pueda tener sus propias colecciones. 
