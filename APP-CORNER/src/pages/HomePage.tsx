@@ -60,7 +60,7 @@ function HomePage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-8 py-12">
+    <div className="mx-auto px-8 py-12">
       <p className="text-xs font-medium text-purple-400 tracking-widest uppercase mb-1">// Explorar</p>
       <h1 className="text-2xl font-semibold text-white mb-6">Encuentra tu próximo juego</h1>
 
@@ -79,7 +79,9 @@ function HomePage() {
         >
           {loading ? "Buscando..." : "Buscar"}
         </button>
+        </div>
         <hr className="border-gray-800 my-8" />
+
       
       <div className="mb-12">
       <p className="text-xs text-purple-400 uppercase tracking-widest mb-1">// Tendencias</p>
@@ -272,7 +274,7 @@ function HomePage() {
         </div>
       )}
     </div>
-      </div>
+      
     ) 
 }
 
