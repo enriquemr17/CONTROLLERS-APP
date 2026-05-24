@@ -1,45 +1,22 @@
-let games = [];
+import { Game } from '../models/game.model.js'
 
-export const getAllGames = () => {
-  return games;
-};
+export const getAllGames = async () => {
+  return await Game.find()
+}
 
-export const getGameById = (id) => {
-  return games.find((g) => g.id == id);
-};
+export const getGameById = async (id) => {
+  return await Game.findById(id)
+}
 
-export const createGame = (data) => {
-  const newGame = {
-    id: Date.now(),
-    title: data.title,
-    platform: data.platform,
-    status: data.status || "pending",
-    portada: data.portada || "",
-    hoursPlayed: data.hoursPlayed || 0
-  };
+export const createGame = async (data) => {
+  const game = new Game(data)
+  return await game.save()
+}
 
-  games.push(newGame);
-  return newGame;
-};
+export const updateGame = async (id, data) => {
+  return await Game.findByIdAndUpdate(id, data, { new: true })
+}
 
-export const updateGame = (id, data) => {
-  const index = games.findIndex((g) => g.id == id);
-
-  if (index === -1) return null;
-
-  games[index] = {
-    ...games[index],
-    ...data
-  };
-
-  return games[index];
-};
-
-export const deleteGame = (id) => {
-  const index = games.findIndex((g) => g.id == id);
-
-  if (index === -1) return false;
-
-  games.splice(index, 1);
-  return true;
-};
+export const deleteGame = async (id) => {
+  return await Game.findByIdAndDelete(id)
+}

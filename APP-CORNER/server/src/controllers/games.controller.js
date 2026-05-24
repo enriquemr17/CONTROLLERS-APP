@@ -1,52 +1,51 @@
-import * as service from "../services/games.service.js";
+import * as service from '../services/games.service.js'
 
-// GET ALL
-export const getGames = (req, res) => {
-  res.status(200).json(service.getAllGames());
-};
-
-// GET BY ID
-export const getGameById = (req, res) => {
-  const game = service.getGameById(req.params.id);
-
-  if (!game) {
-    return res.status(404).json({ message: "Juego no encontrado" });
+export const getGames = async (req, res) => {
+  try {
+    const games = await service.getAllGames()
+    res.status(200).json(games)
+  } catch {
+    res.status(500).json({ message: 'Error del servidor' })
   }
+}
 
-  res.status(200).json(game);
-};
-
-// CREATE
-export const createGame = (req, res) => {
-  const { title, platform } = req.body;
-
-  if (!title || !platform) {
-    return res.status(400).json({ message: "title y platform son obligatorios" });
+export const getGameById = async (req, res) => {
+  try {
+    const game = await service.getGameById(req.params.id)
+    if (!game) return res.status(404).json({ message: 'Juego no encontrado' })
+    res.status(200).json(game)
+  } catch {
+    res.status(500).json({ message: 'Error del servidor' })
   }
+}
 
-  const newGame = service.createGame(req.body);
-
-  res.status(201).json(newGame);
-};
-
-// UPDATE (PUT)
-export const updateGame = (req, res) => {
-  const updated = service.updateGame(req.params.id, req.body);
-
-  if (!updated) {
-    return res.status(404).json({ message: "Juego no encontrado" });
+export const createGame = async (req, res) => {
+  try {
+    const { title, platform } = req.body
+    if (!title || !platform) return res.status(400).json({ message: 'title y platform son obligatorios' })
+    const game = await service.createGame(req.body)
+    res.status(201).json(game)
+  } catch {
+    res.status(500).json({ message: 'Error del servidor' })
   }
+}
 
-  res.status(200).json(updated);
-};
-
-// DELETE
-export const deleteGame = (req, res) => {
-  const deleted = service.deleteGame(req.params.id);
-
-  if (!deleted) {
-    return res.status(404).json({ message: "Juego no encontrado" });
+export const updateGame = async (req, res) => {
+  try {
+    const updated = await service.updateGame(req.params.id, req.body)
+    if (!updated) return res.status(404).json({ message: 'Juego no encontrado' })
+    res.status(200).json(updated)
+  } catch {
+    res.status(500).json({ message: 'Error del servidor' })
   }
+}
 
-  res.status(200).json({ message: "Juego eliminado" });
-};
+export const deleteGame = async (req, res) => {
+  try {
+    const deleted = await service.deleteGame(req.params.id)
+    if (!deleted) return res.status(404).json({ message: 'Juego no encontrado' })
+    res.status(200).json({ message: 'Juego eliminado' })
+  } catch {
+    res.status(500).json({ message: 'Error del servidor' })
+  }
+}
