@@ -60,7 +60,7 @@ function HomePage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-8 py-8">
+    <div className="max-w-6xl mx-auto px-8 py-12">
       <p className="text-xs font-medium text-purple-400 tracking-widest uppercase mb-1">// Explorar</p>
       <h1 className="text-2xl font-semibold text-white mb-6">Encuentra tu próximo juego</h1>
 
@@ -79,10 +79,9 @@ function HomePage() {
         >
           {loading ? "Buscando..." : "Buscar"}
         </button>
-      </div>
-    
-
-    <div className="mb-8">
+        <hr className="border-gray-800 my-8" />
+      
+      <div className="mb-12">
       <p className="text-xs text-purple-400 uppercase tracking-widest mb-1">// Tendencias</p>
       <h2 className="text-lg font-semibold text-white mb-4">Mejor valorados</h2>
       <div className="flex gap-4 overflow-x-auto pb-2">
@@ -117,8 +116,9 @@ function HomePage() {
           ))}
       </div> 
       </div>
+      <hr className="border-gray-800 my-8" />
 
-      <div className="mb-8">
+      <div className="mb-12">
       <p className="text-xs text-orange-400 uppercase tracking-widest mb-1">// Más jugados</p>
       <h2 className="text-lg font-semibold text-white mb-4">Más jugados</h2>
       <div className="flex gap-4 overflow-x-auto pb-2">
@@ -153,8 +153,9 @@ function HomePage() {
           ))}
       </div> 
     </div>
+    <hr className="border-gray-800 my-8" />
     
-    <div className="mb-8">
+    <div className="mb-12">
       <p className="text-xs text-cyan-400 uppercase tracking-widest mb-1">// Nuevos Lanzamientos</p>
       <h2 className="text-lg font-semibold text-white mb-4">Nuevos Lanzamientos</h2>
       <div className="flex gap-4 overflow-x-auto pb-2">
@@ -189,8 +190,9 @@ function HomePage() {
           ))}
       </div>
       </div>
+      <hr className="border-gray-800 my-8" />
 
-    <div className="mb-8">
+    <div className="mb-12">
       <p className="text-xs text-yellow-400 uppercase tracking-widest mb-1">// Para ir ahorrando</p>
       <h2 className="text-lg font-semibold text-white mb-4">Próximos Lanzamientos</h2>
       <div className="flex gap-4 overflow-x-auto pb-2">
@@ -225,6 +227,7 @@ function HomePage() {
           ))}
       </div> 
     </div>
+    <hr className="border-gray-800 my-8" />
 
     
 
@@ -269,7 +272,8 @@ function HomePage() {
         </div>
       )}
     </div>
-  ) 
+      </div>
+    ) 
 }
 
 export default HomePage
