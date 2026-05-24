@@ -15,7 +15,7 @@ export function CollectionProvider({ children }: { children: React.ReactNode }) 
 
   const añadir = (juego: CreateGameInput) => {
     const nuevoJuego: Game = {
-      id: crypto.randomUUID(),
+      _id: crypto.randomUUID(),
       ...juego,
     };
 
@@ -23,13 +23,13 @@ export function CollectionProvider({ children }: { children: React.ReactNode }) 
   };
 
   const eliminar = (id: string) => {
-    setListaJuegos((prev) => prev.filter((juego) => juego.id !== id));
+    setListaJuegos((prev) => prev.filter((juego) => juego._id !== id));
   };
 
   const actualizar = (id: string, status: GameStatus) => {
     setListaJuegos((prev) =>
       prev.map((juego) =>
-        juego.id === id ? { ...juego, status } : juego
+        juego._id === id ? { ...juego, status } : juego
       )
     );
   };

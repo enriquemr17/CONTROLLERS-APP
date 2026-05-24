@@ -49,7 +49,7 @@ function EditGameModal({ isOpen, game, onSave, onClose }: EditGameModalProps) {
 
           <div className="flex gap-3 pt-2">
             <button
-              onClick={() => onSave(game!.id, status, hoursPlayed)}
+              onClick={() => onSave(game!._id, status, hoursPlayed)}
               className="flex-1 bg-purple-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors"
             >
               Guardar
