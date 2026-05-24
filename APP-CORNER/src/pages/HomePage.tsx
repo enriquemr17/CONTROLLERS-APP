@@ -1,10 +1,35 @@
-import { useState } from "react"
+import { use, useEffect, useState } from "react"
 import { searchGames, addGame } from "../api/gamesApi"
+import { getNuevosLanzamientos, getMasJugados, getMejorValorados, getProximosLanzamientos } from "../api/gamesApi"
 
 function HomePage() {
   const [query, setQuery] = useState("")
   const [games, setGames] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
+  const [nuevosLanzamientios, setNuevosLanzamientos] = useState<any[]> ([])
+  const [mejorValorados, setMejorValorados] = useState<any[]>([])
+  const [masJugados, setMasJugados] = useState<any[]>([])
+  const [proximosLanzamientos, setProximosLanzamientos] = useState<any[]>([])
+
+
+  useEffect (() => {
+    async function cargarSecciones(){
+      const data1 = await getMejorValorados()
+      setMejorValorados(data1.results)
+
+      const data2 = await getMasJugados()
+      setMasJugados(data2.results)
+
+      const data3 = await getNuevosLanzamientos()
+      setNuevosLanzamientos(data3.results)
+
+      const data4 = await getProximosLanzamientos()
+      setProximosLanzamientos (data4.results)
+    }
+
+    cargarSecciones()
+  }, [])
+
 
   async function handleSearch() {
     if (!query.trim()) return
