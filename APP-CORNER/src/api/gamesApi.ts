@@ -28,12 +28,10 @@ export async function addGame(game: CreateGameInput) {
 export async function updateGame(id: string, data: Partial<Game>) {
   const res = await fetch(`https://controllers-app.onrender.com/api/games/${id}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-
+  if (!res.ok) throw new Error("Error al actualizar el juego")
   return res.json();
 }
 
@@ -41,6 +39,6 @@ export async function deleteGame(id: string) {
   const res = await fetch(`https://controllers-app.onrender.com/api/games/${id}`, {
     method: "DELETE",
   });
-
+  if (!res.ok) throw new Error("Error al eliminar el juego")
   return res.json();
 }
