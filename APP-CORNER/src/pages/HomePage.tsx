@@ -6,30 +6,24 @@ function HomePage() {
   const [query, setQuery] = useState("")
   const [games, setGames] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
-  const [nuevosLanzamientios, setNuevosLanzamientos] = useState<any[]> ([])
+  const [nuevosLanzamientos, setNuevosLanzamientos] = useState<any[]>([])
   const [mejorValorados, setMejorValorados] = useState<any[]>([])
   const [masJugados, setMasJugados] = useState<any[]>([])
   const [proximosLanzamientos, setProximosLanzamientos] = useState<any[]>([])
 
-
-  useEffect (() => {
-    async function cargarSecciones(){
+  useEffect(() => {
+    async function cargarSecciones() {
       const data1 = await getMejorValorados()
       setMejorValorados(data1.results)
-
       const data2 = await getMasJugados()
       setMasJugados(data2.results)
-
       const data3 = await getNuevosLanzamientos()
       setNuevosLanzamientos(data3.results)
-
       const data4 = await getProximosLanzamientos()
-      setProximosLanzamientos (data4.results)
+      setProximosLanzamientos(data4.results)
     }
-
     cargarSecciones()
   }, [])
-
 
   async function handleSearch() {
     if (!query.trim()) return
@@ -79,203 +73,173 @@ function HomePage() {
         >
           {loading ? "Buscando..." : "Buscar"}
         </button>
-        </div>
-        <hr className="border-gray-800 my-8" />
-
-      
-      <div className="mb-12">
-      <p className="text-xs text-purple-400 uppercase tracking-widest mb-1">// Tendencias</p>
-      <h2 className="text-lg font-semibold text-white mb-4">Mejor valorados</h2>
-      <div className="flex gap-4 overflow-x-auto pb-2">
-          {mejorValorados.map((game:any)=>(
-           <div key={game.id} className="min-w-[150px]">
-              <div className="relative">
-                <img
-                  src={game.background_image}
-                  alt={game.name}
-                  className="w-full h-36 object-cover"
-                />
-                <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-purple-300 text-xs px-2 py-0.5 rounded border border-purple-800 font-medium">
-                  {game.platforms?.[0]?.platform?.name || "Unknown"}
-                </div>
-                {game.rating > 0 && (
-                  <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
-                    ★ {game.rating.toFixed(1)}
-                  </div>
-                )}
-              </div>
-              <div className="p-3">
-                <h3 className="font-semibold text-sm text-white mb-1 truncate">{game.name}</h3>
-                <p className="text-xs text-gray-500 mb-3">{game.genres?.[0]?.name || ""}</p>
-                <button
-                  className="w-full text-xs py-1.5 rounded-lg border border-purple-700 text-purple-400 hover:bg-purple-900 transition-colors font-medium"
-                  onClick={() => handleAddGame(game)}
-                >
-                  + Añadir a colección
-                </button>
-              </div>
-           </div> 
-          ))}
-      </div> 
       </div>
-      <hr className="border-gray-800 my-8" />
-
-      <div className="mb-12">
-      <p className="text-xs text-orange-400 uppercase tracking-widest mb-1">// Más jugados</p>
-      <h2 className="text-lg font-semibold text-white mb-4">Más jugados</h2>
-      <div className="flex gap-4 overflow-x-auto pb-2">
-          {masJugados.map((game:any)=>(
-           <div key={game.id} className="min-w-[150px]">
-              <div className="relative">
-                <img
-                  src={game.background_image}
-                  alt={game.name}
-                  className="w-full h-36 object-cover"
-                />
-                <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-purple-300 text-xs px-2 py-0.5 rounded border border-purple-800 font-medium">
-                  {game.platforms?.[0]?.platform?.name || "Unknown"}
-                </div>
-                {game.rating > 0 && (
-                  <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
-                    ★ {game.rating.toFixed(1)}
-                  </div>
-                )}
-              </div>
-              <div className="p-3">
-                <h3 className="font-semibold text-sm text-white mb-1 truncate">{game.name}</h3>
-                <p className="text-xs text-gray-500 mb-3">{game.genres?.[0]?.name || ""}</p>
-                <button
-                  className="w-full text-xs py-1.5 rounded-lg border border-purple-700 text-purple-400 hover:bg-purple-900 transition-colors font-medium"
-                  onClick={() => handleAddGame(game)}
-                >
-                  + Añadir a colección
-                </button>
-              </div>
-           </div> 
-          ))}
-      </div> 
-    </div>
-    <hr className="border-gray-800 my-8" />
-    
-    <div className="mb-12">
-      <p className="text-xs text-cyan-400 uppercase tracking-widest mb-1">// Nuevos Lanzamientos</p>
-      <h2 className="text-lg font-semibold text-white mb-4">Nuevos Lanzamientos</h2>
-      <div className="flex gap-4 overflow-x-auto pb-2">
-          {nuevosLanzamientios.map((game:any)=>(
-           <div key={game.id} className="min-w-[150px]">
-              <div className="relative">
-                <img
-                  src={game.background_image}
-                  alt={game.name}
-                  className="w-full h-36 object-cover"
-                />
-                <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-purple-300 text-xs px-2 py-0.5 rounded border border-purple-800 font-medium">
-                  {game.platforms?.[0]?.platform?.name || "Unknown"}
-                </div>
-                {game.rating > 0 && (
-                  <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
-                    ★ {game.rating.toFixed(1)}
-                  </div>
-                )}
-              </div>
-              <div className="p-3">
-                <h3 className="font-semibold text-sm text-white mb-1 truncate">{game.name}</h3>
-                <p className="text-xs text-gray-500 mb-3">{game.genres?.[0]?.name || ""}</p>
-                <button
-                  className="w-full text-xs py-1.5 rounded-lg border border-purple-700 text-purple-400 hover:bg-purple-900 transition-colors font-medium"
-                  onClick={() => handleAddGame(game)}
-                >
-                  + Añadir a colección
-                </button>
-              </div>
-           </div> 
-          ))}
-      </div>
-      </div>
-      <hr className="border-gray-800 my-8" />
-
-    <div className="mb-12">
-      <p className="text-xs text-yellow-400 uppercase tracking-widest mb-1">// Para ir ahorrando</p>
-      <h2 className="text-lg font-semibold text-white mb-4">Próximos Lanzamientos</h2>
-      <div className="flex gap-4 overflow-x-auto pb-2">
-          {proximosLanzamientos.map((game:any)=>(
-           <div key={game.id} className="min-w-[150px]">
-              <div className="relative">
-                <img
-                  src={game.background_image}
-                  alt={game.name}
-                  className="w-full h-36 object-cover"
-                />
-                <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-purple-300 text-xs px-2 py-0.5 rounded border border-purple-800 font-medium">
-                  {game.platforms?.[0]?.platform?.name || "Unknown"}
-                </div>
-                {game.rating > 0 && (
-                  <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
-                    ★ {game.rating.toFixed(1)}
-                  </div>
-                )}
-              </div>
-              <div className="p-3">
-                <h3 className="font-semibold text-sm text-white mb-1 truncate">{game.name}</h3>
-                <p className="text-xs text-gray-500 mb-3">{game.genres?.[0]?.name || ""}</p>
-                <button
-                  className="w-full text-xs py-1.5 rounded-lg border border-purple-700 text-purple-400 hover:bg-purple-900 transition-colors font-medium"
-                  onClick={() => handleAddGame(game)}
-                >
-                  + Añadir a colección
-                </button>
-              </div>
-           </div> 
-          ))}
-      </div> 
-    </div>
-    <hr className="border-gray-800 my-8" />
-
-    
 
       {games.length > 0 && (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {games.map((game: any) => (
-            <div key={game.id} className="rounded-xl border border-gray-800 overflow-hidden hover:border-purple-500 transition-colors" style={{ backgroundColor: '#111120' }}>
-              <div className="relative">
-                <img
-                  src={game.background_image}
-                  alt={game.name}
-                  className="w-full h-36 object-cover"
-                />
-                <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-purple-300 text-xs px-2 py-0.5 rounded border border-purple-800 font-medium">
-                  {game.platforms?.[0]?.platform?.name || "Unknown"}
-                </div>
-                {game.rating > 0 && (
-                  <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
-                    ★ {game.rating.toFixed(1)}
+        <>
+          <button
+            onClick={() => setGames([])}
+            className="text-sm text-purple-400 mb-6 hover:text-purple-300 block"
+          >
+            ← Volver
+          </button>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {games.map((game: any) => (
+              <div key={game.id} className="rounded-xl border border-gray-800 overflow-hidden hover:border-purple-500 transition-colors" style={{ backgroundColor: '#111120' }}>
+                <div className="relative">
+                  <img src={game.background_image} alt={game.name} className="w-full h-36 object-cover" />
+                  <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-purple-300 text-xs px-2 py-0.5 rounded border border-purple-800 font-medium">
+                    {game.platforms?.[0]?.platform?.name || "Unknown"}
                   </div>
-                )}
+                  {game.rating > 0 && (
+                    <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
+                      ★ {game.rating.toFixed(1)}
+                    </div>
+                  )}
+                </div>
+                <div className="p-3">
+                  <h3 className="font-semibold text-sm text-white mb-1 truncate">{game.name}</h3>
+                  <p className="text-xs text-gray-500 mb-3">{game.genres?.[0]?.name || ""}</p>
+                  <button
+                    className="w-full text-xs py-1.5 rounded-lg border border-purple-700 text-purple-400 hover:bg-purple-900 transition-colors font-medium"
+                    onClick={() => handleAddGame(game)}
+                  >
+                    + Añadir a colección
+                  </button>
+                </div>
               </div>
-              <div className="p-3">
-                <h3 className="font-semibold text-sm text-white mb-1 truncate">{game.name}</h3>
-                <p className="text-xs text-gray-500 mb-3">{game.genres?.[0]?.name || ""}</p>
-                <button
-                  className="w-full text-xs py-1.5 rounded-lg border border-purple-700 text-purple-400 hover:bg-purple-900 transition-colors font-medium"
-                  onClick={() => handleAddGame(game)}
-                >
-                  + Añadir a colección
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </>
       )}
 
-      {games.length === 0 && !loading && (
-        <div className="text-center py-20 text-gray-600">
-          <p className="text-4xl mb-4">🎮</p>
-          <p className="text-sm">Busca un juego para empezar</p>
-        </div>
+      {games.length === 0 && (
+        <>
+          <div className="mb-12">
+            <p className="text-xs text-purple-400 uppercase tracking-widest mb-1">// Tendencias</p>
+            <h2 className="text-lg font-semibold text-white mb-4">Mejor valorados</h2>
+            <div className="flex gap-4 overflow-x-auto pb-2">
+              {mejorValorados.map((game: any) => (
+                <div key={game.id} className="min-w-[200px] rounded-xl border border-gray-800 overflow-hidden hover:border-purple-500 transition-colors" style={{ backgroundColor: '#111120' }}>
+                  <div className="relative">
+                    <img src={game.background_image} alt={game.name} className="w-full h-36 object-cover" />
+                    <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-purple-300 text-xs px-2 py-0.5 rounded border border-purple-800 font-medium">
+                      {game.platforms?.[0]?.platform?.name || "Unknown"}
+                    </div>
+                    {game.rating > 0 && (
+                      <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
+                        ★ {game.rating.toFixed(1)}
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-3">
+                    <h3 className="font-semibold text-sm text-white mb-1 truncate">{game.name}</h3>
+                    <p className="text-xs text-gray-500 mb-3">{game.genres?.[0]?.name || ""}</p>
+                    <button className="w-full text-xs py-1.5 rounded-lg border border-purple-700 text-purple-400 hover:bg-purple-900 transition-colors font-medium" onClick={() => handleAddGame(game)}>
+                      + Añadir a colección
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <hr className="border-gray-800 my-8" />
+
+          <div className="mb-12">
+            <p className="text-xs text-orange-400 uppercase tracking-widest mb-1">// Popular</p>
+            <h2 className="text-lg font-semibold text-white mb-4">Más jugados</h2>
+            <div className="flex gap-4 overflow-x-auto pb-2">
+              {masJugados.map((game: any) => (
+                <div key={game.id} className="min-w-[200px] rounded-xl border border-gray-800 overflow-hidden hover:border-orange-500 transition-colors" style={{ backgroundColor: '#111120' }}>
+                  <div className="relative">
+                    <img src={game.background_image} alt={game.name} className="w-full h-36 object-cover" />
+                    <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-orange-300 text-xs px-2 py-0.5 rounded border border-orange-800 font-medium">
+                      {game.platforms?.[0]?.platform?.name || "Unknown"}
+                    </div>
+                    {game.rating > 0 && (
+                      <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
+                        ★ {game.rating.toFixed(1)}
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-3">
+                    <h3 className="font-semibold text-sm text-white mb-1 truncate">{game.name}</h3>
+                    <p className="text-xs text-gray-500 mb-3">{game.genres?.[0]?.name || ""}</p>
+                    <button className="w-full text-xs py-1.5 rounded-lg border border-orange-700 text-orange-400 hover:bg-orange-900 transition-colors font-medium" onClick={() => handleAddGame(game)}>
+                      + Añadir a colección
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <hr className="border-gray-800 my-8" />
+
+          <div className="mb-12">
+            <p className="text-xs text-cyan-400 uppercase tracking-widest mb-1">// Recientes</p>
+            <h2 className="text-lg font-semibold text-white mb-4">Nuevos lanzamientos</h2>
+            <div className="flex gap-4 overflow-x-auto pb-2">
+              {nuevosLanzamientos.map((game: any) => (
+                <div key={game.id} className="min-w-[200px] rounded-xl border border-gray-800 overflow-hidden hover:border-cyan-500 transition-colors" style={{ backgroundColor: '#111120' }}>
+                  <div className="relative">
+                    <img src={game.background_image} alt={game.name} className="w-full h-36 object-cover" />
+                    <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-cyan-300 text-xs px-2 py-0.5 rounded border border-cyan-800 font-medium">
+                      {game.platforms?.[0]?.platform?.name || "Unknown"}
+                    </div>
+                    {game.rating > 0 && (
+                      <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
+                        ★ {game.rating.toFixed(1)}
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-3">
+                    <h3 className="font-semibold text-sm text-white mb-1 truncate">{game.name}</h3>
+                    <p className="text-xs text-gray-500 mb-3">{game.genres?.[0]?.name || ""}</p>
+                    <button className="w-full text-xs py-1.5 rounded-lg border border-cyan-700 text-cyan-400 hover:bg-cyan-900 transition-colors font-medium" onClick={() => handleAddGame(game)}>
+                      + Añadir a colección
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <hr className="border-gray-800 my-8" />
+
+          <div className="mb-12">
+            <p className="text-xs text-yellow-400 uppercase tracking-widest mb-1">// Para ir ahorrando</p>
+            <h2 className="text-lg font-semibold text-white mb-4">Próximos lanzamientos</h2>
+            <div className="flex gap-4 overflow-x-auto pb-2">
+              {proximosLanzamientos.map((game: any) => (
+                <div key={game.id} className="min-w-[200px] rounded-xl border border-gray-800 overflow-hidden hover:border-yellow-500 transition-colors" style={{ backgroundColor: '#111120' }}>
+                  <div className="relative">
+                    <img src={game.background_image} alt={game.name} className="w-full h-36 object-cover" />
+                    <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-yellow-300 text-xs px-2 py-0.5 rounded border border-yellow-800 font-medium">
+                      {game.platforms?.[0]?.platform?.name || "Unknown"}
+                    </div>
+                    {game.rating > 0 && (
+                      <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
+                        ★ {game.rating.toFixed(1)}
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-3">
+                    <h3 className="font-semibold text-sm text-white mb-1 truncate">{game.name}</h3>
+                    <p className="text-xs text-gray-500 mb-3">{game.genres?.[0]?.name || ""}</p>
+                    <button className="w-full text-xs py-1.5 rounded-lg border border-yellow-700 text-yellow-400 hover:bg-yellow-900 transition-colors font-medium" onClick={() => handleAddGame(game)}>
+                      + Añadir a colección
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
       )}
     </div>
-      
-    ) 
+  )
 }
 
 export default HomePage
