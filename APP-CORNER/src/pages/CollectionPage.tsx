@@ -36,7 +36,7 @@ function CollectionPage() {
   }
 
   async function handleEdit(id: string) {
-    const game = games.find(g => g.id === id)
+    const game = games.find(g => g._id === id)
     setJuegoEditando(game || null)
   }
 
@@ -83,8 +83,8 @@ function CollectionPage() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {juegosFiltrados.map((game) => (
             <GameCard
-              key={game.id}
-              id={game.id}
+              key={game._id}
+              _id={game._id}
               title={game.title}
               platform={game.platform || "Unknown"}
               status={game.status as GameStatus}

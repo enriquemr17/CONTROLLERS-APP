@@ -25,7 +25,8 @@ export const createGame = async (req, res) => {
     if (!title || !platform) return res.status(400).json({ message: 'title y platform son obligatorios' })
     const game = await service.createGame(req.body)
     res.status(201).json(game)
-  } catch {
+  } catch (error){
+    console.error ('Error createGame:', error)
     res.status(500).json({ message: 'Error del servidor' })
   }
 }

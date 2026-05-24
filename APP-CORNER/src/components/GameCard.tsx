@@ -1,7 +1,7 @@
 import StatusBadge, { type Estado } from "./StatusBadge"
 
 interface GameCardProps {
-  id: string
+  _id: string
   title: string
   platform: string
   status: Estado
@@ -11,7 +11,7 @@ interface GameCardProps {
   onEdit: (id: string) => void
 }
 
-function GameCard({ id, title, platform, status, portada, hoursPlayed, onDelete, onEdit }: GameCardProps) {
+function GameCard({ _id, title, platform, status, portada, hoursPlayed, onDelete, onEdit }: GameCardProps) {
   return (
     <div className="rounded-xl border border-gray-800 overflow-hidden hover:border-purple-500 transition-colors" style={{ backgroundColor: '#111120' }}>
       <div className="relative">
@@ -33,13 +33,13 @@ function GameCard({ id, title, platform, status, portada, hoursPlayed, onDelete,
         </div>
         <div className="flex gap-2">
           <button
-            onClick={() => onEdit(id)}
+            onClick={() => onEdit(_id)}
             className="flex-1 text-xs py-1 rounded border border-purple-700 text-purple-400 hover:bg-purple-900 transition-colors"
           >
             Editar
           </button>
           <button
-            onClick={() => onDelete(id)}
+            onClick={() => onDelete(_id)}
             className="flex-1 text-xs py-1 rounded border border-red-900 text-red-400 hover:bg-red-950 transition-colors"
           >
             Eliminar
