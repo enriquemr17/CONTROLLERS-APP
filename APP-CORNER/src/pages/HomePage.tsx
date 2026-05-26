@@ -6,6 +6,7 @@ function HomePage() {
   const [query, setQuery] = useState("")
   const [games, setGames] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
+  const [plataforma, setPlataforma] = useState("")
   const [nuevosLanzamientos, setNuevosLanzamientos] = useState<any[]>([])
   const [mejorValorados, setMejorValorados] = useState<any[]>([])
   const [masJugados, setMasJugados] = useState<any[]>([])
@@ -21,9 +22,10 @@ function HomePage() {
       setNuevosLanzamientos(data3.results)
       const data4 = await getProximosLanzamientos()
       setProximosLanzamientos(data4.results)
+      
     }
     cargarSecciones()
-  }, [])
+  }, [plataforma])
 
   async function handleSearch() {
     if (!query.trim()) return
@@ -83,6 +85,39 @@ function HomePage() {
           >
             ← Volver
           </button>
+
+          <select 
+            value={plataforma}
+            onChange={(e)=> setPlataforma(e.target.value)}
+            className="border border-gray-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-purple-500 mb-8"
+            style={{backgroundColor: '#111120'}}
+          >
+              <option value="4">PC</option>
+              <option value="187">PS5</option>
+              <option value="18">PS4</option>
+              <option value="16">PS3</option>
+              <option value="15">PS2</option>
+              <option value="27">PS1</option>
+              <option value="19">PS Vita</option>
+              <option value="17">PSP</option>
+              <option value="1">Xbox One</option>
+              <option value="186">Xbox Series S/X</option>
+              <option value="14">Xbox 360</option>
+              <option value="80">Xbox</option>
+              <option value="7">Switch</option>
+              <option value="8">Nintendo DS</option>
+              <option value="9">Nintendo DSi</option>
+              <option value="13">Nintendo 64</option>
+              <option value="11">Game Boy Advance</option>
+              <option value="26">Game Boy Color</option>
+              <option value="24">Game Boy</option>
+              <option value="105">GameCube</option>
+              <option value="106">Wii</option>
+              <option value="11">SNES</option>
+              <option value="3">iOS</option>
+              <option value="21">Android</option>
+          </select>
+
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {games.map((game: any) => (
               <div key={game.id} className="rounded-xl border border-gray-800 overflow-hidden hover:border-purple-500 transition-colors" style={{ backgroundColor: '#111120' }}>

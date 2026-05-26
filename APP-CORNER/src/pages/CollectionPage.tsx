@@ -7,6 +7,7 @@ import EditGameModal from "../components/EditGameModal"
 
 function CollectionPage() {
   const [games, setGames] = useState<Game[]>([])
+  const [plataforma, setPlataforma] = useState("")
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [filtro, setFiltro] = useState<GameStatus | null>(null)
@@ -49,8 +50,11 @@ function CollectionPage() {
       setError("Error al editar el juego")
     }
   }
+  const plataformas = [...new Set(games.map(g => g.platform))]
 
-  const juegosFiltrados = filtro ? games.filter(g => g.status === filtro) : games
+  const juegosFiltrados = games
+      .filter(g => filtro ? g.status === filtro :true)
+      .filter(g => plataforma ? g.platform === plataforma : true)
 
   if (cargando) return (
     <div className="flex items-center justify-center min-h-screen">
@@ -74,6 +78,17 @@ function CollectionPage() {
         <FilterBar value={filtro} onChange={setFiltro} />
       </div>
 
+      <select 
+          value={plataforma}
+          onChange={(e) => setPlataforma(e.target.value)}
+          className="border border-gray-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-purple-500 mb-6"
+          style={{backgroundColor: '#111120'}}
+        >
+          <option value="">Todas las plataformas</option>
+          {plataformas.map((p)=> (
+            <option key={p} value={p}>{p}</option>
+          ))}
+        </select>
       {juegosFiltrados.length === 0 ? (
         <div className="text-center py-20 text-gray-600">
           <p className="text-4xl mb-4">🎮</p>

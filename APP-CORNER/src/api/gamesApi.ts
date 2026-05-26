@@ -43,28 +43,32 @@ export async function deleteGame(id: string) {
   return res.json();
 }
 
-export async function getMejorValorados () {
+export async function getMejorValorados (plataforma?: string) {
+  const plataformParam = plataforma ? `&plataforms=${plataforma}`: ""
   const res = await fetch (
     `https://api.rawg.io/api/games?ordering=-rating&key=a66dd6a48a4547158ab02855f1b6bba6`
   )
   return res.json()
 }
 
-export async function getMasJugados () {
+export async function getMasJugados (plataforma?: string) {
+  const plataformParam = plataforma ? `&plataforms=${plataforma}`: ""
   const res = await fetch (
     `https://api.rawg.io/api/games?ordering=-added&key=a66dd6a48a4547158ab02855f1b6bba6`
   )
   return res.json()
 }
 
-export async function getNuevosLanzamientos () {
+export async function getNuevosLanzamientos (plataforma?: string) {
+  const plataformParam = plataforma ? `&plataforms=${plataforma}`: ""
   const res = await fetch (
     `https://api.rawg.io/api/games?ordering=-released&dates=2025-01-01,2026-05-24&key=a66dd6a48a4547158ab02855f1b6bba6`
   )
   return res.json()
 }
 
-export async function getProximosLanzamientos () {
+export async function getProximosLanzamientos (plataforma?: string) {
+  const plataformParam = plataforma ? `&plataforms=${plataforma}`: ""
   const res = await fetch (
         `https://api.rawg.io/api/games?dates=2026-05-25,2027-01-01&ordering=-added&key=a66dd6a48a4547158ab02855f1b6bba6`
   )
