@@ -126,7 +126,10 @@ function HomePage() {
                 <div className="relative">
                   <img src={game.background_image} alt={game.name} className="w-full h-36 object-cover" />
                   <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-purple-300 text-xs px-2 py-0.5 rounded border border-purple-800 font-medium">
-                    {game.platforms?.[0]?.platform?.name || "Unknown"}
+                    {plataforma 
+                      ? game.platforms?.find((p: any) => p.platform.id === Number(plataforma))?.platform.name || game.platforms?.[0]?.platform?.name
+                      : game.platforms?.[0]?.platform?.name || "Unknown"
+                    }
                   </div>
                   {game.rating > 0 && (
                     <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
@@ -161,7 +164,10 @@ function HomePage() {
                   <div className="relative">
                     <img src={game.background_image} alt={game.name} className="w-full h-36 object-cover" />
                     <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-purple-300 text-xs px-2 py-0.5 rounded border border-purple-800 font-medium">
-                      {game.platforms?.[0]?.platform?.name || "Unknown"}
+                      {plataforma 
+                      ? game.platforms?.find((p: any) => p.platform.id === Number(plataforma))?.platform.name || game.platforms?.[0]?.platform?.name
+                      : game.platforms?.[0]?.platform?.name || "Unknown"
+                    }
                     </div>
                     {game.rating > 0 && (
                       <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
@@ -192,7 +198,10 @@ function HomePage() {
                   <div className="relative">
                     <img src={game.background_image} alt={game.name} className="w-full h-36 object-cover" />
                     <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-orange-300 text-xs px-2 py-0.5 rounded border border-orange-800 font-medium">
-                      {game.platforms?.[0]?.platform?.name || "Unknown"}
+                      {plataforma 
+                      ? game.platforms?.find((p: any) => p.platform.id === Number(plataforma))?.platform.name || game.platforms?.[0]?.platform?.name
+                      : game.platforms?.[0]?.platform?.name || "Unknown"
+                    }
                     </div>
                     {game.rating > 0 && (
                       <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
@@ -223,7 +232,10 @@ function HomePage() {
                   <div className="relative">
                     <img src={game.background_image} alt={game.name} className="w-full h-36 object-cover" />
                     <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-cyan-300 text-xs px-2 py-0.5 rounded border border-cyan-800 font-medium">
-                      {game.platforms?.[0]?.platform?.name || "Unknown"}
+                      {plataforma 
+                      ? game.platforms?.find((p: any) => p.platform.id === Number(plataforma))?.platform.name || game.platforms?.[0]?.platform?.name
+                      : game.platforms?.[0]?.platform?.name || "Unknown"
+                    }
                     </div>
                     {game.rating > 0 && (
                       <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
@@ -254,7 +266,10 @@ function HomePage() {
                   <div className="relative">
                     <img src={game.background_image} alt={game.name} className="w-full h-36 object-cover" />
                     <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-yellow-300 text-xs px-2 py-0.5 rounded border border-yellow-800 font-medium">
-                      {game.platforms?.[0]?.platform?.name || "Unknown"}
+                      {plataforma 
+                      ? game.platforms?.find((p: any) => p.platform.id === Number(plataforma))?.platform.name || game.platforms?.[0]?.platform?.name
+                      : game.platforms?.[0]?.platform?.name || "Unknown"
+                    }
                     </div>
                     {game.rating > 0 && (
                       <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-yellow-400 text-xs px-2 py-0.5 rounded font-medium">
