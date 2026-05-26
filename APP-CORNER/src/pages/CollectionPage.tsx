@@ -5,6 +5,7 @@ import type { Game, GameStatus } from "../types/game"
 import FilterBar from "../components/FilterBar"
 import EditGameModal from "../components/EditGameModal"
 
+
 function CollectionPage() {
   const [games, setGames] = useState<Game[]>([])
   const [plataforma, setPlataforma] = useState("")
@@ -41,9 +42,9 @@ function CollectionPage() {
     setJuegoEditando(game || null)
   }
 
-  async function handleSave(id: string, status: GameStatus, hoursPlayed: number) {
+  async function handleSave(id: string, status: GameStatus, hoursPlayed: number, platform: string) {
     try {
-      await updateGame(id, { status, hoursPlayed })
+      await updateGame(id, { status, hoursPlayed, platform })
       loadGames()
       setJuegoEditando(null)
     } catch (err) {
