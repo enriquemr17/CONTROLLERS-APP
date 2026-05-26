@@ -76,22 +76,13 @@ function HomePage() {
           {loading ? "Buscando..." : "Buscar"}
         </button>
       </div>
-
-      {games.length > 0 && (
-        <>
-          <button
-            onClick={() => setGames([])}
-            className="text-sm text-purple-400 mb-6 hover:text-purple-300 block"
-          >
-            ← Volver
-          </button>
-
-          <select 
+       <select 
             value={plataforma}
             onChange={(e)=> setPlataforma(e.target.value)}
             className="border border-gray-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-purple-500 mb-8"
             style={{backgroundColor: '#111120'}}
           >
+              <option value="">Todas las platafromas</option>
               <option value="4">PC</option>
               <option value="187">PS5</option>
               <option value="18">PS4</option>
@@ -117,6 +108,17 @@ function HomePage() {
               <option value="3">iOS</option>
               <option value="21">Android</option>
           </select>
+
+      {games.length > 0 && (
+        <>
+          <button
+            onClick={() => setGames([])}
+            className="text-sm text-purple-400 mb-6 hover:text-purple-300 block"
+          >
+            ← Volver
+          </button>
+
+         
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {games.map((game: any) => (
