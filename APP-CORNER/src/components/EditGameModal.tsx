@@ -57,31 +57,31 @@ function EditGameModal({ isOpen, game, onSave, onClose }: EditGameModalProps) {
               className="mt-1 w-full border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500"
               style={{backgroundColor: '#0f0f1a'}}
               >
-              <option value="">Todas las platafromas</option>
-              <option value="4">PC</option>
-              <option value="187">PS5</option>
-              <option value="18">PS4</option>
-              <option value="16">PS3</option>
-              <option value="15">PS2</option>
-              <option value="27">PS1</option>
-              <option value="19">PS Vita</option>
-              <option value="17">PSP</option>
-              <option value="1">Xbox One</option>
-              <option value="186">Xbox Series S/X</option>
-              <option value="14">Xbox 360</option>
-              <option value="80">Xbox</option>
-              <option value="7">Switch</option>
-              <option value="8">Nintendo DS</option>
-              <option value="9">Nintendo DSi</option>
-              <option value="13">Nintendo 64</option>
-              <option value="11">Game Boy Advance</option>
-              <option value="26">Game Boy Color</option>
-              <option value="24">Game Boy</option>
-              <option value="105">GameCube</option>
-              <option value="106">Wii</option>
-              <option value="11">SNES</option>
-              <option value="3">iOS</option>
-              <option value="21">Android</option>
+              <option value="">Todas las plataformas</option>
+              <option value="PC">PC</option>
+              <option value="PlayStation 5">PlayStation 5</option>
+              <option value="PlayStation 4">PlayStation 4</option>
+              <option value="PlayStation 3">PlayStation 3</option>
+              <option value="PlayStation 2">PlayStation 2</option>
+              <option value="PlayStation">PlayStation</option>
+              <option value="PS Vita">PS Vita</option>
+              <option value="PSP">PSP</option>
+              <option value="Xbox One">Xbox One</option>
+              <option value="Xbox Series S/X">Xbox Series S/X</option>
+              <option value="Xbox 360">Xbox 360</option>
+              <option value="Xbox">Xbox</option>
+              <option value="Nintendo Switch">Nintendo Switch</option>
+              <option value="Nintendo DS">Nintendo DS</option>
+              <option value="Nintendo DSi">Nintendo DSi</option>
+              <option value="Nintendo 64">Nintendo 64</option>
+              <option value="Game Boy Advance">Game Boy Advance</option>
+              <option value="Game Boy Color">Game Boy Color</option>
+              <option value="Game Boy">Game Boy</option>
+              <option value="GameCube">GameCube</option>
+              <option value="Wii">Wii</option>
+              <option value="SNES">SNES</option>
+              <option value="iOS">iOS</option>
+              <option value="Android">Android</option>
 
               </select>
           </div>
