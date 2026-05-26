@@ -14,13 +14,13 @@ function HomePage() {
 
   useEffect(() => {
     async function cargarSecciones() {
-      const data1 = await getMejorValorados()
+      const data1 = await getMejorValorados(plataforma)
       setMejorValorados(data1.results)
-      const data2 = await getMasJugados()
+      const data2 = await getMasJugados(plataforma)
       setMasJugados(data2.results)
-      const data3 = await getNuevosLanzamientos()
+      const data3 = await getNuevosLanzamientos(plataforma)
       setNuevosLanzamientos(data3.results)
-      const data4 = await getProximosLanzamientos()
+      const data4 = await getProximosLanzamientos(plataforma)
       setProximosLanzamientos(data4.results)
       
     }
@@ -31,7 +31,7 @@ function HomePage() {
     if (!query.trim()) return
     try {
       setLoading(true)
-      const data = await searchGames(query)
+      const data = await searchGames(query, plataforma)
       setGames(data.results)
     } catch (error) {
       console.error("Error buscando juegos", error)

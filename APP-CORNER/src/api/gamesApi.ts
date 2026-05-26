@@ -1,8 +1,9 @@
 import type { CreateGameInput, Game } from "../types/game";
 
-export async function searchGames(query: string) {
+export async function searchGames(query: string, plataforma?: string) {
+  const platformParam = plataforma ? `&platforms=${plataforma}`: ""
   const res = await fetch(
-    `https://api.rawg.io/api/games?search=${query}&key=a66dd6a48a4547158ab02855f1b6bba6`
+    `https://api.rawg.io/api/games?search=${query}${platformParam}&key=a66dd6a48a4547158ab02855f1b6bba6`
   );
 
   return res.json();
